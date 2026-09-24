@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qwen3.8-27B Kearuga · thewhitemage.</title>
+  <meta name="description" content="A two-model suite: the fine-tuned Qwen3.8-27B-Kearuga target and its matching Kearuga-DFlash2 drafter, served on a single 128 GB NVIDIA DGX Spark.">
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main" class="wrap">
+
+  <a class="back reveal" href="../work.html"><span class="b-arrow">&larr;</span>Work</a>
+
+  <header class="page-head">
+    <h1 class="reveal">Qwen3.8-27B Kearuga</h1>
+    <p class="lede reveal">A two-model suite: the fine-tuned 27B target and its matching Kearuga-DFlash2 drafter, served together on a single 128 GB NVIDIA DGX Spark.</p>
+    <dl class="meta reveal">
+      <div><dt>Year</dt><dd>2026</dd></div>
+      <div><dt>Status</dt><dd>Active, v0.6.6</dd></div>
+      <div><dt>Role</dt><dd>Solo design &amp; development</dd></div>
+      <div><dt>Link</dt><dd><a class="text-link" href="https://github.com/0xWhiteMage/qwen3.8-27b-kearuga-sglang-dgx-spark-dflash2" target="_blank" rel="noopener">GitHub</a></dd></div>
+    </dl>
+  </header>
+
+  <div class="article">
+    <h2 class="reveal">Overview</h2>
+    <p class="reveal">Kearuga ships as a two-model suite on Hugging Face: <code>Qwen3.8-27B-Kearuga</code>, the fine-tuned 27B target model, and <code>Kearuga-DFlash2</code>, a matching speculative-decoding drafter distilled from and calibrated on Kearuga in NVFP4 with a 64K draft head. Together they run on a single 128 GB NVIDIA DGX Spark (GB10 / SM121) via SGLang.</p>
+
+    <div class="tldr reveal">
+      <p class="tldr-label">TL;DR</p>
+      <ul>
+        <li>Fine-tuned DFlash 2 drafter, distilled from and calibrated on Kearuga</li>
+        <li>Certified production container launchers and hardware configurations</li>
+        <li>Priority preemption queues and automated multi-gate verification</li>
+        <li>Stock z-lab recipe preserved as a DRAFTER_PROFILE=stock fallback</li>
+      </ul>
+    </div>
+
+    <h2 class="reveal">How it works</h2>
+    <p class="reveal">Speculative decoding lets a small, fast drafter propose candidate tokens that the full model then verifies in parallel. Done well, it feels like the model got faster without changing its answers. Done poorly, the drafter misses and the extra compute is wasted.</p>
+    <p class="reveal">This project treats the drafter as a first-class citizen: it is distilled from Kearuga itself and calibrated against Kearuga's own output distribution, so its guesses land more often. The interactive profile keeps full reasoning and tool-calling support, which is where most draft setups quietly break.</p>
+
+    <h2 class="reveal">Why a single Spark</h2>
+    <p class="reveal">A large part of thewhitemage. thesis is that flagship-class models belong on desktop hardware. Getting a 27B model with a tuned drafter to run comfortably on one 128 GB Spark is the point: local inference you can actually live with, not a demo that needs a cluster.</p>
+    <p class="reveal">The repository ships the pieces that make that repeatable: launch scripts, hardware configs, preemption queues for shared machines, and verification gates so a "working" setup is proven rather than assumed.</p>
+
+    <h2 class="reveal">Status</h2>
+    <p class="reveal">Active and under continued tuning. The model and drafter weights are on <a class="text-link" href="https://huggingface.co/0xWhiteMage" target="_blank" rel="noopener">Hugging Face</a>; the full stack is on <a class="text-link" href="https://github.com/0xWhiteMage/qwen3.8-27b-kearuga-sglang-dgx-spark-dflash2" target="_blank" rel="noopener">GitHub</a>.</p>
+  </div>
+
+  <footer class="footer">
+    <span>&copy; <span id="year">2026</span> thewhitemage.</span>
+    <nav class="footer-links" aria-label="Footer">
+      <a class="text-link" href="https://x.com/0xWhiteMage" target="_blank" rel="noopener">X</a>
+      <a class="text-link" href="https://github.com/0xWhiteMage" target="_blank" rel="noopener">GitHub</a>
+      <a class="text-link" href="https://huggingface.co/0xWhiteMage" target="_blank" rel="noopener">Hugging Face</a>
+      <a class="text-link" href="mailto:hello@benjaminang.tv">Email</a>
+    </nav>
+  </footer>
+
+</main>
+
+<nav class="dock" aria-label="Primary">
+  <a href="../index.html">Home</a>
+  <a href="../work.html" aria-current="page">Work</a>
+  <a href="../contact.html">Contact</a>
+  <span class="dock-sep" aria-hidden="true"></span>
+  <button id="themeToggle" type="button" aria-label="Toggle light and dark theme" title="Toggle theme">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20.4 14.2A8.5 8.5 0 0 1 9.8 3.6a8.5 8.5 0 1 0 10.6 10.6Z"/>
+    </svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.1"/>
+      <line x1="12" y1="2.6" x2="12" y2="4.7"/>
+      <line x1="12" y1="19.3" x2="12" y2="21.4"/>
+      <line x1="2.6" y1="12" x2="4.7" y2="12"/>
+      <line x1="19.3" y1="12" x2="21.4" y2="12"/>
+      <line x1="5.4" y1="5.4" x2="6.9" y2="6.9"/>
+      <line x1="17.1" y1="17.1" x2="18.6" y2="18.6"/>
+      <line x1="5.4" y1="18.6" x2="6.9" y2="17.1"/>
+      <line x1="17.1" y1="6.9" x2="18.6" y2="5.4"/>
+    </svg>
+  </button>
+</nav>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
