@@ -29,24 +29,37 @@
       <div><dt>Year</dt><dd>2026</dd></div>
       <div><dt>Status</dt><dd>Released</dd></div>
       <div><dt>Role</dt><dd>Quantisation &amp; serving</dd></div>
-      <div><dt>Link</dt><dd><a class="text-link" href="https://huggingface.co/0xWhiteMage/ThinkingCap-Qwen3.8-27B-Kearuga-EXL3-4.00bpw" target="_blank" rel="noopener">Hugging Face</a></dd></div>
+      <div><dt>Link</dt><dd><a class="text-link" href="https://github.com/0xWhiteMage/thinkingcap-qwen3.8-27b-exl3-tensorfold-cuda" target="_blank" rel="noopener">GitHub</a></dd></div>
     </dl>
   </header>
 
   <div class="article">
     <h2 class="reveal">Overview</h2>
-    <p class="reveal">The third entry in the Kearuga collection: an EXL3, nominal 4.00bpw release of <a class="text-link" href="https://huggingface.co/BottleCapAI" target="_blank" rel="noopener">BottleCap AI</a>'s ThinkingCap-Qwen3.8-27B, a reasoning model built on Qwen3.8-27B. It is aimed at local reasoning assistants, coding workflows and tool-enabled applications where fidelity and serving throughput both matter.</p>
+    <p class="reveal">The third entry in the Kearuga collection: an EXL3, nominal 4.00bpw release of <a class="text-link" href="https://huggingface.co/bottlecapai/ThinkingCap-Qwen3.8-27B" target="_blank" rel="noopener">BottleCap AI's ThinkingCap-Qwen3.8-27B</a>, a reasoning model built on Qwen3.8-27B. It is aimed at local reasoning assistants, coding workflows and tool-enabled applications where fidelity and serving throughput both matter.</p>
     <p class="reveal">Where the original <a class="text-link" href="qwen-kearuga-dgx-spark.html">Kearuga suite</a> tuned a target-and-drafter pair for SGLang, this release asks a different question: how closely can a compact weight file track a reasoning reference while still serving real concurrency on one Spark?</p>
 
+    <div class="tldr reveal">
+      <p class="tldr-label">TL;DR</p>
+      <ul>
+        <li>16.35 GB EXL3 weights, nominal 4.00 decoder bpw</li>
+        <li>97.79% top-1 token agreement vs ThinkingCap BF16, 0.00517 mean KLD</li>
+        <li>60.61 tok/s single-request decode, 249.55 tok/s at 16 concurrent</li>
+        <li>TensorFold CUDA recipe for DGX Spark, experimental 24 GB GPU path</li>
+      </ul>
+    </div>
+
     <h2 class="reveal">Fidelity</h2>
-    <p class="reveal">Measured against the ThinkingCap BF16 reference on a held-out suite of 240 prompts and 25,780 token positions: <strong>97.79% top-1 token agreement</strong> and a mean coarsened KL divergence of 0.00517. The suite spans chat, code, mathematics, instruction following, tools and long text.</p>
+    <p class="reveal">Measured against the ThinkingCap BF16 reference on a held-out suite of 240 prompts and 25,780 token positions spanning chat, code, mathematics, instruction following, tools and long text: <strong>97.79% top-1 token agreement</strong> and a mean coarsened KL divergence of 0.00517, with a pooled per-position p99 of 0.0619. The coarsened measurements are documented on the model card rather than presented as accuracy percentages.</p>
 
     <h2 class="reveal">Serving</h2>
-    <p class="reveal">On one DGX Spark (GB10) with a TensorFold-based CUDA stack, stock DFlash 2 and a 262K context configuration: <strong>60.61 tok/s</strong> single-request decode and <strong>249.55 tok/s</strong> aggregate at 16 concurrent requests, roughly 37% more aggregate throughput than the previous stack on the same target and drafter.</p>
-    <p class="reveal">A 24 GB NVIDIA GPU path exists for Ampere, Ada and Blackwell candidates, but it is experimental with a known loading-admission limitation; the published benchmarks are Spark-only.</p>
+    <p class="reveal">Benchmarked on one DGX Spark (GB10) with a TensorFold-based CUDA stack, stock DFlash 2 and a 262K context configuration with BF16 target KV: <strong>60.61 tok/s</strong> single-request decode and <strong>249.55 tok/s</strong> aggregate at 16 concurrent requests, roughly 37% more aggregate throughput than the previous stack on the same target and drafter.</p>
+    <p class="reveal">The launch recipes, hardware configurations and a documented quick start live in the <a class="text-link" href="https://github.com/0xWhiteMage/thinkingcap-qwen3.8-27b-exl3-tensorfold-cuda" target="_blank" rel="noopener">serving repository</a>.</p>
+
+    <h2 class="reveal">24 GB GPUs</h2>
+    <p class="reveal">A 24 GB NVIDIA GPU path exists for Ampere, Ada and Blackwell candidates, documented in the repository. It is experimental with a known loading-admission limitation, and RTX 5090 D V2 and 5090 Laptop variants are candidates rather than qualified targets; all published benchmarks remain Spark-only.</p>
 
     <h2 class="reveal">Status</h2>
-    <p class="reveal">Released October 2026 on <a class="text-link" href="https://huggingface.co/0xWhiteMage/ThinkingCap-Qwen3.8-27B-Kearuga-EXL3-4.00bpw" target="_blank" rel="noopener">Hugging Face</a> under PolyForm Small Business 1.0.0 plus BottleCap's personal-use permission.</p>
+    <p class="reveal">Released October 2026 on <a class="text-link" href="https://huggingface.co/0xWhiteMage/ThinkingCap-Qwen3.8-27B-Kearuga-EXL3-4.00bpw" target="_blank" rel="noopener">Hugging Face</a> and <a class="text-link" href="https://modelscope.ai/organization/WhiteMage" target="_blank" rel="noopener">ModelScope</a>, under PolyForm Small Business 1.0.0 plus BottleCap's personal-use permission. The serving stack is on <a class="text-link" href="https://github.com/0xWhiteMage/thinkingcap-qwen3.8-27b-exl3-tensorfold-cuda" target="_blank" rel="noopener">GitHub</a>.</p>
   </div>
 
   <footer class="footer">
