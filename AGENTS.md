@@ -5,6 +5,10 @@ from repo `0xWhiteMage/0xwhitemage.github.io` (branch `main`, root).
 
 ## Conventions
 
+- **Always pull from upstream first**: before editing any work/feature page,
+  fetch the current README/model card of the source repo (raw.githubusercontent
+  or huggingface.co/.../raw) and sync versions, benchmarks, features and links.
+  Never write page copy from memory of an older fetch.
 - **Featured work rule**: the homepage Featured work list is two entries —
   the latest quant release first (labelled `Qwen3.8 27B Kearuga (Name)` with
   meta `FORMAT · N.NNbpw`), then Tameru Compaction System. Swap the quant row

@@ -40,31 +40,43 @@
     <div class="tldr reveal">
       <p class="tldr-label">TL;DR</p>
       <ul>
-        <li>Deterministic, purely extractive compaction with zero dependencies</li>
-        <li>Typed-edge dependency restoration keeps related spans together</li>
-        <li>SelfCompact-style timing gate decides when to compact</li>
-        <li>Plan-aware multi-query and qualifier-aware structured trimming</li>
-        <li>Derived-objective mode for empty or implicit goals</li>
+        <li>81.9% mean characters saved, 25/25 required strings, zero leaks</li>
+        <li>12.83 ms median wall time; ~4.6x faster per tool result in v1.5.0</li>
+        <li>15/15 release QA battery, 1,319 tests, stdlib-only core</li>
+        <li>Merged into the Hermes plugin catalogue: <code>context: engine: tameru</code></li>
       </ul>
     </div>
 
     <h2 class="reveal">Why extractive</h2>
     <p class="reveal">Abstractive summaries read smoothly but they lie quietly: details get paraphrased, numbers drift, and there is no way to trace a claim back to the original text. For an agent acting on its own history, that is a correctness problem, not a style problem. Extractive compaction keeps the ground truth intact. If a span is dropped, it was a deliberate, logged decision.</p>
 
+    <h2 class="reveal">Measured results</h2>
+    <p class="reveal">On a shared 16-task corpus covering documents, configuration, Git/npm/YAML output, multilingual text and saturated grep: <strong>81.9% mean characters saved</strong>, every required source string retained, zero planted forbidden strings leaked, at a 12.83 ms median. The same harness measures 36.3% for LCC mechanical, 50.5% for Headroom's TextCrusher and 53.4% for a TF-IDF baseline on identical input.</p>
+    <p class="reveal">A separate 15-case release QA battery passes every case, including git history, multi-hop documents, Japanese, Chinese and Arabic text, and a 4,000-record synthetic document completed in 100.4 ms. Budget ratios from 0.1 to 0.7 all retain required strings with no leaks.</p>
+
+    <h2 class="reveal">What is in 1.5.0</h2>
+    <ul class="reveal">
+      <li>Hardened for untrusted output: quadratic-time paths closed, lone surrogates handled, a 20,000-newline input from over 20 seconds to milliseconds</li>
+      <li>Wider secrets screen on the recovery cache: 70 of 80 credential shapes recognised, up from 29</li>
+      <li>Roughly 4.6x faster per tool result: a 650 KB log sequence from 4.05 s to 0.61 s, a 50 KB log from 443 ms to 66 ms</li>
+      <li>Plain-word diff and grep questions keep whole hunks, file headers and definitions</li>
+    </ul>
+    <p class="reveal">Compaction results are unchanged: the comparison corpus, QA battery and every budget ratio score exactly as before.</p>
+
     <h2 class="reveal">Design principles</h2>
     <ul class="reveal">
       <li>Deterministic output: the same input always produces the same compacted context</li>
       <li>No model in the loop: compaction is a selection problem, not a generation task</li>
       <li>Query-aware: what gets kept depends on what the agent is currently trying to do</li>
-      <li>Zero dependencies: a single importable package, MIT licensed</li>
+      <li>Fail-open: weak queries or insufficient savings return the original text</li>
+      <li>Zero dependencies: a single importable package, Python 3.10+, MIT licensed</li>
     </ul>
-    <p class="reveal">The repository includes benchmarks, fixtures, harnesses and a test suite, because a compaction system you cannot measure is just a hope.</p>
 
     <h2 class="reveal">In practice</h2>
-    <p class="reveal">Tameru ships as a standalone <a class="text-link" href="hermes-agent.html">Hermes plugin</a>, merged into the official Hermes plugin catalogue in October 2026. Users install the catalogue entry and select <code>context: engine: tameru</code>, wiring deterministic compaction into the agent loop where context pressure is a daily reality rather than a benchmark curiosity.</p>
+    <p class="reveal">Tameru ships as a standalone <a class="text-link" href="hermes-agent.html">Hermes plugin</a>, merged into the official Hermes plugin catalogue in October 2026. Users install the catalogue entry and select <code>context: engine: tameru</code>; the plugin vendors the engine and adds a bounded recovery path. For other frameworks it exposes a Python API, a <code>tameru-compress</code> CLI and a generic transcript adapter, with an integration guide for host message lists and task-derived queries.</p>
 
     <h2 class="reveal">Status</h2>
-    <p class="reveal">v1.5.0 is released under MIT on <a class="text-link" href="https://github.com/0xWhiteMage/tameru-compaction-system" target="_blank" rel="noopener">GitHub</a>: 1,319 tests and a 15/15 release QA battery behind it.</p>
+    <p class="reveal">v1.5.0 is released under MIT on <a class="text-link" href="https://github.com/0xWhiteMage/tameru-compaction-system" target="_blank" rel="noopener">GitHub</a>: 1,319 tests passed and a 15/15 release QA battery behind it, with benchmarks, fixtures and a comparison harness in the repo.</p>
   </div>
 
   <footer class="footer">
