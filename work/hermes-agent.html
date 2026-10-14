@@ -27,7 +27,7 @@
     <p class="lede reveal">Pull requests to Nous Research's open agent framework, aimed at the two places agent UX breaks: context management and desktop media.</p>
     <dl class="meta reveal">
       <div><dt>Year</dt><dd>2026</dd></div>
-      <div><dt>Status</dt><dd>1 merged, 1 open</dd></div>
+      <div><dt>Status</dt><dd>2 merged</dd></div>
       <div><dt>Role</dt><dd>Contributor</dd></div>
       <div><dt>Link</dt><dd><a class="text-link" href="https://github.com/NousResearch/hermes-agent/pulls?q=is%3Apr+author%3A0xWhiteMage" target="_blank" rel="noopener">Pull requests</a></dd></div>
     </dl>
@@ -47,10 +47,10 @@
     </div>
 
     <div class="pr reveal">
-      <h3>Tameru compaction engine plugin</h3>
-      <p class="pr-line"><a class="text-link" href="https://github.com/NousResearch/hermes-agent/pull/94102" target="_blank" rel="noopener">#94102</a> &middot; Opened Aug 24, 2026 &nbsp;<span class="pr-status">Open</span></p>
-      <p>Adds <a class="text-link" href="tameru-compaction-system.html">Tameru</a> as a built-in pluggable context engine (<code>plugins/context_engine/tameru/</code>). The plugin compresses bulky tool output deterministically and extractively in the low-millisecond range with zero API calls, a local and auditable alternative to the abstractive summarisation path that can block turns for minutes.</p>
-      <p>The PR addresses several long-standing context-management issues upstream (#39691, #76151, #88988) and implements Hermes's <code>ContextCompressor</code> host contract under the canonical <code>tameru</code> engine name.</p>
+      <h3>Tameru in the Hermes plugin catalogue</h3>
+      <p class="pr-line"><a class="text-link" href="https://github.com/NousResearch/hermes-agent/pull/94102" target="_blank" rel="noopener">#94102</a> &middot; Opened Aug 24, 2026 &middot; Merged Oct 12, 2026 &nbsp;<span class="pr-status is-merged">Merged</span></p>
+      <p>Landed after review iteration as a plugin-catalogue entry shipping <a class="text-link" href="tameru-compaction-system.html">Tameru</a> 1.4.1 as a standalone installable plugin, pinned to a reviewed commit of <a class="text-link" href="https://github.com/0xWhiteMage/hermes-tameru-plugin" target="_blank" rel="noopener">hermes-tameru-plugin</a>. Users install the catalogue entry and select <code>context: engine: tameru</code>.</p>
+      <p>The plugin compresses bulky tool output deterministically and extractively inside Hermes's own demotion gates, with zero auxiliary model calls, and exposes bounded recovery through the context-engine interface. It implements the <code>ContextCompressor</code> host contract under the canonical <code>tameru</code> engine name.</p>
     </div>
   </div>
 
