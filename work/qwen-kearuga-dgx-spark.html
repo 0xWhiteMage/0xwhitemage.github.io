@@ -27,7 +27,7 @@
     <p class="lede reveal">A two-model suite: the fine-tuned 27B target and its matching Kearuga-DFlash2 drafter, served together on a single 128 GB NVIDIA DGX Spark.</p>
     <dl class="meta reveal">
       <div><dt>Year</dt><dd>2026</dd></div>
-      <div><dt>Status</dt><dd>Active, v0.6.6</dd></div>
+      <div><dt>Status</dt><dd>Active, v0.6.7</dd></div>
       <div><dt>Role</dt><dd>Solo design &amp; development</dd></div>
       <div><dt>Link</dt><dd><a class="text-link" href="https://github.com/0xWhiteMage/qwen3.8-27b-kearuga-sglang-dgx-spark-dflash2" target="_blank" rel="noopener">GitHub</a></dd></div>
     </dl>
@@ -41,6 +41,7 @@
       <p class="tldr-label">TL;DR</p>
       <ul>
         <li>Fine-tuned DFlash 2 drafter, distilled from and calibrated on Kearuga</li>
+        <li>EAGLE 3/1/4 speculative variants, up to ~535 tok/s aggregate at C32</li>
         <li>Certified production container launchers and hardware configurations</li>
         <li>Priority preemption queues and automated multi-gate verification</li>
         <li>Stock z-lab recipe preserved as a DRAFTER_PROFILE=stock fallback</li>
@@ -56,7 +57,7 @@
     <p class="reveal">The repository ships the pieces that make that repeatable: launch scripts, hardware configs, preemption queues for shared machines, and verification gates so a "working" setup is proven rather than assumed.</p>
 
     <h2 class="reveal">Status</h2>
-    <p class="reveal">Active and under continued tuning. The model and drafter weights are on <a class="text-link" href="https://huggingface.co/0xWhiteMage" target="_blank" rel="noopener">Hugging Face</a>; the full stack is on <a class="text-link" href="https://github.com/0xWhiteMage/qwen3.8-27b-kearuga-sglang-dgx-spark-dflash2" target="_blank" rel="noopener">GitHub</a>.</p>
+    <p class="reveal">Active and under continued tuning, currently v0.6.7. The weights live in The Kearuga Collection on <a class="text-link" href="https://huggingface.co/0xWhiteMage" target="_blank" rel="noopener">Hugging Face</a>, alongside the <a class="text-link" href="thinkingcap-kearuga-exl3.html">ThinkingCap EXL3</a> release; the full stack is on <a class="text-link" href="https://github.com/0xWhiteMage/qwen3.8-27b-kearuga-sglang-dgx-spark-dflash2" target="_blank" rel="noopener">GitHub</a>.</p>
   </div>
 
   <footer class="footer">
