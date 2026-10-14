@@ -5,9 +5,9 @@ from repo `0xWhiteMage/0xwhitemage.github.io` (branch `main`, root).
 
 ## Conventions
 
-- **Featured work rule**: the homepage Featured work list always leads with the
-  latest quant release (meta reads `Latest quant`), followed by flagship
-  Kearuga work and Tameru. Update it whenever a new quant ships.
+- **Featured work rule**: the homepage Featured work list features exactly one
+  entry — the latest quant release — labelled `Qwen3.8 27B Kearuga (Name)` with
+  meta `FORMAT · N.NNbpw`. Swap it in whenever a new quant ships.
 - **British English** throughout all prose (`quantisation`, `optimisation`,
   `summarisation`). American spellings only in code identifiers
   (`currentColor`), URLs and quoted proper nouns (PR titles, header names).
