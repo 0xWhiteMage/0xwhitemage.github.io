@@ -34,7 +34,7 @@
   </header>
 
   <div class="article">
-    <div class="reveal" style="position:relative;aspect-ratio:16/9;">
+    <div class="reveal" style="position:relative;aspect-ratio:1920/803;">
       <iframe
         loading="lazy" title="Tameru Compaction System demo"
         src="https://play.gumlet.io/embed/6afb31d80f8c8230a4ec4728?background=false&amp;autoplay=false&amp;loop=true&amp;disable_player_controls=false"
@@ -44,7 +44,7 @@
       </iframe>
     </div>
 
-    <h2 class="reveal">Overview</h2>
+    <h2 class="reveal" style="margin-top:24px;">Overview</h2>
     <p class="reveal">Named from &#12383;&#12417;&#12427; (tameru), Japanese for "to store up". Long-running agents fill their context with tool output, plans and history, and something has to decide what survives when the window runs out. Most systems answer that with a model-written summary. Tameru's default answers it with selection: it is deterministic and purely extractive, so the compacted context is made of real spans from the transcript rather than generated paraphrase, and every decision can be audited and reproduced. The engine is harness-agnostic: a Python function, a command-line tool and a transcript adapter, with harness plugins kept in separate repositories.</p>
 
     <div class="tldr reveal">
